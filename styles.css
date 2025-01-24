@@ -1,0 +1,246 @@
+/* 全局样式设置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    font-family: "Microsoft YaHei", sans-serif;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: fixed;
+    touch-action: none;
+    background-color: #f8f8f8;
+}
+
+#app {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    overflow: hidden;
+    touch-action: none;
+}
+
+/* 页面基础样式 */
+.page {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+/* 欢迎页样式 */
+#welcomePage {
+    background-color: #FF4D4F;
+}
+
+.welcome-content {
+    width: 100%;
+    height: 100%;
+    background: url('image/welcome_background.jpeg') center center/cover no-repeat;
+    background-attachment: fixed;
+}
+
+.start-button {
+    position: absolute;
+    left: 50%;
+    top: 66.7%;
+    transform: translate(-50%, -50%);
+    padding: 20px 40px;
+    font-size: 24px;
+    color: #D4380D;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.start-button:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* 游戏页样式 */
+#gamePage {
+    background: url('image/game_background.jpeg') center center/cover no-repeat;
+    background-attachment: fixed;
+}
+
+.game-header {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 500px;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    z-index: 10;
+    color: #D4380D;
+    font-size: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#gameCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+#playerContainer {
+    position: absolute;
+    width: 100%;
+    height: 150px;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    overflow: visible;
+    pointer-events: none;
+}
+
+#player {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    bottom: 0;
+    left: 50%;
+    background: url('image/user.png') center center/contain no-repeat;
+    transition: left 0.1s linear;
+    pointer-events: none;
+}
+
+/* 结算弹窗样式 */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 100;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 50px;
+    border-radius: 30px;
+    text-align: center;
+    background: linear-gradient(135deg, #fff5f5, #fff);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.3s ease;
+}
+
+.modal-content h2 {
+    font-size: 36px;
+    color: #D4380D;
+    margin-bottom: 30px;
+}
+
+.final-score {
+    margin: 30px 0;
+}
+
+.final-score h3 {
+    font-size: 24px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+#finalScore {
+    font-size: 120px;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    line-height: 1;
+    margin: 20px 0;
+}
+
+.restart-button {
+    padding: 20px 40px;
+    font-size: 24px;
+    color: #D4380D;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.restart-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 0%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+    .game-header {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+
+    #finalScore {
+        font-size: 80px;
+    }
+
+    .modal-content {
+        padding: 30px;
+        width: 90%;
+        max-width: 400px;
+    }
+
+    .start-button,
+    .restart-button {
+        padding: 15px 30px;
+        font-size: 20px;
+    }
+}
+
+/* 禁止页面弹性滚动 */
+body {
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: auto;
+}
